@@ -1,0 +1,23 @@
+We have @Data-For-Data.excalidraw and @Participants-guide.pdf , the thing is I am planning to build a system for this can you help me build this?
+
+I am preparing for a hackathon what do you think about this and how can we plan for this can you help me in terms of this.
+
+We are trying to build a system which can serve as the centralized space for the cgm data, heart rate sensosrs, rings, and other health care software in multi os like ios and android.
+The plan is to use all this, automate height calculation, weight calculation, for bmi.
+Have a cloud infra so that we can easily share our historical data to our doctor or any doctor we need. Blood report sharing. Chatbots for sharing.
+The main plan is to have the feature for the scanning of the food,  quantifying food, calories, protein, fat, diagnosis of spike prediction to what might have caused it.
+
+Let's say that we have SGOT and SGPT high marker, then what we need to make sense is that we need to have an ai call feature for the reminder.
+
+The plan is to include to touch all the ideation marker other than the AI in  pediatric. 
+
+Let's ideate first this is the main thing that we are trying to do.
+
+Further steps can be:
+To move on to showcasing something with AI like can we built a simple sample in stich and such.
+
+
+Is there opensource tools or things where we can natively get iot data from different watches and wearables, I want to be able to use all that to make prediction.
+Or do they rely on some sort of protocol.
+
+Are there any prediction models that people have used like for the bmi, height, body fat,glucose prediction and then for the food scanning something. 

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glymmy - AI-Powered Unified Health Data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. CORE DESIGN SYSTEM */
+:root {
+  --navy-base: #020617;
+  --navy-card: #0f172a;
+  --accent-blue: #38bdf8;
+  --accent-emerald: #10b981;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border: rgba(56, 189, 248, 0.15);
+  --glass: rgba(15, 23, 42, 0.6);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: #000;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr;
+  padding: 40px 0;
+  place-items: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.slide-container {
+  width: 1280px;
+  height: 720px;
+  background-color: var(--navy-base);
+  color: var(--text-primary);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+  border-radius: 16px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+}
+
+/* Background Decoration */
+.slide-container::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.slide-container::after {
+  content: '';
+  position: absolute;
+  bottom: -5%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.slide-container > * { position: relative; z-index: 1; }
+
+/* 2. TYPOGRAPHY */
+h1, h2, h3, .slide-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; margin: 0; }
+h1 { font-size: 110px; line-height: 0.9; letter-spacing: -3px; }
+.slide-title { font-size: 44px; margin-bottom: 40px; border-left: 6px solid var(--accent-blue); padding-left: 20px; text-align: left; width: 100%; }
+.slide-title span { display: block; font-size: 18px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-blue); margin-bottom: 8px; font-weight: 800; }
+
+p, li { font-size: 20px; line-height: 1.5; color: var(--text-secondary); }
+.highlight { color: var(--accent-blue); font-weight: 600; }
+.emerald { color: var(--accent-emerald); font-weight: 600; }
+
+/* 3. LAYOUT COMPONENTS */
+.content-area { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; }
+
+.two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; align-items: center; }
+
+.tiled-content { display: flex; gap: 30px; width: 100%; }
+.tile { 
+  flex: 1; background: var(--glass); border: 1px solid var(--border); 
+  border-radius: 20px; padding: 40px; display: flex; flex-direction: column;
+}
+.tile .icon { font-size: 32px; color: var(--accent-blue); margin-bottom: 20px; }
+.tile h3 { font-size: 24px; margin-bottom: 15px; color: var(--text-primary); }
+
+/* Block Diagram Specifics */
+.architecture-block { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.block-node { 
+  width: 30%; background: var(--navy-card); border: 1px solid var(--accent-blue); 
+  border-radius: 16px; padding: 25px; position: relative;
+}
+.block-node h4 { color: var(--accent-blue); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+.node-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 16px; color: var(--text-primary); }
+.node-item i { color: var(--accent-emerald); font-size: 20px; width: 24px; text-align: center; }
+
+.block-arrow { color: var(--accent-blue); opacity: 0.4; font-size: 24px; }
+
+/* List-based Table Replacement for OCR Slide */
+.data-row-container { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.data-row { display: flex; align-items: center; padding: 15px 20px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
+.data-row.header { background: transparent; border: none; padding-bottom: 5px; }
+.data-col-1 { width: 30%; font-weight: 700; color: var(--accent-blue); }
+.data-col-2 { width: 20%; font-weight: 700; color: #ef4444; }
+.data-col-3 { width: 50%; font-size: 15px; }
+.header .data-col-1, .header .data-col-2, .header .data-col-3 { color: var(--text-secondary); text-transform: uppercase; font-size: 12px; font-weight: 800; letter-spacing: 1px; }
+
+/* Images */
+.image-wrapper { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+.image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Badge */
+.badge { 
+  background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent-blue); 
+  color: var(--accent-blue); font-size: 12px; font-weight: 800; padding: 6px 14px; 
+  border-radius: 50px; position: absolute; top: 60px; right: 60px;
+}
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title_Slide -->
+<div class="slide-container" id="slide1">
+    <div class="content-area" style="text-align: center;">
+        <p style="color: var(--accent-blue); font-weight: 800; letter-spacing: 5px; margin-bottom: 30px; text-transform: uppercase;">Harvard Health Systems Innovation Hackathon 2026</p>
+        <h1>Glymmy</h1>
+        <h2 style="font-size: 36px; font-weight: 400; color: var(--text-secondary); margin-top: 10px;">AI-Powered Unified Health Data Platform</h2>
+        
+        <div style="margin-top: 60px; display: flex; justify-content: center; gap: 40px; background: rgba(255,255,255,0.03); padding: 30px; border-radius: 100px; border: 1px solid var(--border);">
+            <div style="text-align: left;"><p style="font-size: 12px; color: var(--accent-blue); font-weight: 800;">TEAM MEMBERS</p><p style="color: white; font-weight: 600;">Abinash Acharya • Prazwal Pandey<br>Reetwiz Amatya • Kabish Bhattarai</p></div>
+            <div style="width: 1px; background: var(--border);"></div>
+            <div style="text-align: left;"><p style="font-size: 12px; color: var(--accent-emerald); font-weight: 800;">PROJECT TAGLINE</p><p style="color: white; font-weight: 600;">Building High-Value Health<br>Systems Through AI</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 2: Problem & Impact -->
+<div class="slide-container" id="slide2">
+    <h2 class="slide-title"><span>Problem Statement</span>The Fragmentation Crisis & Tangible Impact</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h3 style="margin-bottom: 25px; font-size: 32px;">The Challenge</h3>
+                <p style="margin-bottom: 20px; color: var(--text-primary);">A chronic disease patient juggles <span class="highlight">5+ disconnected apps</span> with no unified view.</p>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 12px;"></i> CGM data isolated from food & activity</li>
+                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 12px;"></i> Patients can't interpret abnormal lab values</li>
+                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 12px;"></i> Missing preventive windows due to siloed data</li>
+                </ul>
+            </div>
+            <div class="tile" style="border-color: var(--accent-emerald);">
+                <h3 style="color: var(--accent-emerald); border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 20px;">The Tangible Impact</h3>
+                <div style="display: grid; gap: 20px;">
+                    <div>
+                        <p style="font-weight: 700; color: var(--text-primary); font-size: 18px;">For Patients</p>
+                        <p style="font-size: 16px;">Empowered <span class="emerald">self-management</span> and better health outcomes via real-time AI guidance.</p>
+                    </div>
+                    <div style="border-top: 1px solid var(--border); padding-top: 15px;">
+                        <p style="font-weight: 700; color: var(--text-primary); font-size: 18px;">For Healthcare Providers</p>
+                        <p style="font-size: 16px;"><span class="emerald">24/7 monitoring</span> and automated data synthesis reducing administrative burden by 70%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: Product: Technical Architecture -->
+<div class="slide-container" id="slide3">
+    <div class="badge">Tackles 10/11 Hackathon Challenges</div>
+    <h2 class="slide-title"><span>Product Architecture</span>The Unified Health Data Ecosystem</h2>
+    <div class="content-area">
+        <div class="architecture-block">
+            <!-- Col 1: Sources -->
+            <div class="block-node">
+                <h4>Data Sources</h4>
+                <div class="node-item"><i class="fa-solid fa-microchip" style="color: var(--accent-emerald);"></i><span>CGM Sensors</span></div>
+                <div class="node-item"><i class="fa-solid fa-clock" style="color: var(--accent-emerald);"></i><span>Smartwatches</span></div>
+                <div class="node-item"><i class="fa-solid fa-file-pdf" style="color: var(--accent-emerald);"></i><span>PDF Lab Uploads</span></div>
+            </div>
+            <div class="block-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <!-- Col 2: Engine -->
+            <div class="block-node" style="border-color: var(--accent-emerald);">
+                <h4>AI Processing Engine</h4>
+                <div class="node-item"><i class="fa-solid fa-eye"></i><span>Computer Vision</span></div>
+                <div class="node-item"><i class="fa-solid fa-chart-line"></i><span>Time-Series ML</span></div>
+                <div class="node-item"><i class="fa-solid fa-brain"></i><span>OCR + LLM Models</span></div>
+            </div>
+            <div class="block-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <!-- Col 3: Output -->
+            <div class="block-node">
+                <h4>Sharing & Output</h4>
+                <div class="node-item"><i class="fa-solid fa-qrcode"></i><span>QR Code Inventory</span></div>
+                <div class="node-item"><i class="fa-solid fa-user-doctor"></i><span>Provider Portal</span></div>
+                <div class="node-item"><i class="fa-solid fa-heart-pulse"></i><span>FHIR Interoperability</span></div>
+            </div>
+        </div>
+        <div style="margin-top: 50px; background: rgba(16, 185, 129, 0.05); border: 1px solid var(--accent-emerald); border-radius: 12px; padding: 25px; display: flex; justify-content: space-around;">
+            <div style="text-align: center;"><i class="fa-solid fa-shield-halved" style="color: var(--accent-emerald); font-size: 24px; margin-bottom: 10px;"></i><p style="font-size: 14px; font-weight: 700;">HIPAA & GDPR COMPLIANT</p></div>
+            <div style="text-align: center;"><i class="fa-solid fa-lock" style="color: var(--accent-emerald); font-size: 24px; margin-bottom: 10px;"></i><p style="font-size: 14px; font-weight: 700;">AES-256 ENCRYPTION</p></div>
+            <div style="text-align: center;"><i class="fa-solid fa-user-check" style="color: var(--accent-emerald); font-size: 24px; margin-bottom: 10px;"></i><p style="font-size: 14px; font-weight: 700;">BAA SUPPORT READY</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Core AI Capabilities -->
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title"><span>Intelligence Engine</span>The Three Pillars of Glymmy AI</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-apple-whole"></i></div>
+                <h3>Food Intelligence</h3>
+                <div style="background: var(--accent-blue); color: black; font-weight: 800; font-size: 10px; padding: 4px 10px; border-radius: 50px; width: fit-content; margin-bottom: 15px;">30-60 MIN SPIKE PREDICTION</div>
+                <p style="font-size: 14px;">Predicts glucose response based on <span class="highlight">personal history</span>. Multi-item AI recognition and portion estimation.</p>
+            </div>
+            <div class="tile" style="background: rgba(16, 185, 129, 0.05); border-color: var(--accent-emerald);">
+                <div class="icon" style="color: var(--accent-emerald);"><i class="fa-solid fa-file-waveform"></i></div>
+                <h3>Lab AI Interpreter</h3>
+                <div style="background: var(--accent-emerald); color: black; font-weight: 800; font-size: 10px; padding: 4px 10px; border-radius: 50px; width: fit-content; margin-bottom: 15px;">OCR + AI TRANSLATION</div>
+                <p style="font-size: 14px;">Converts complex clinical biomarkers into <span class="emerald">plain-language insights</span> and actionable next steps.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-robot"></i></div>
+                <h3>Health Assistant</h3>
+                <div style="background: var(--accent-blue); color: black; font-weight: 800; font-size: 10px; padding: 4px 10px; border-radius: 50px; width: fit-content; margin-bottom: 15px;">24/7 PREDICTIVE ANALYTICS</div>
+                <p style="font-size: 14px;">Continuous monitoring for Hypoglycemia and HRV. Automated <span class="highlight">AI Voice Call</span> reminders for critical markers.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: Clinical Clarity: Lab Report AI Interpreter -->
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title"><span>Clinical Clarity</span>Lab Report AI Interpreter (OCR)</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div class="image-wrapper" style="height: 400px;">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/1873654699091730705" alt="OCR Scan Lab Report Mockup">
+            </div>
+            <div>
+                <h3>Bridging the Health Literacy Gap</h3>
+                <p style="margin-bottom: 25px; font-size: 16px;">OCR extraction extracts complex data into human-centered insights instantly.</p>
+                
+                <div class="data-row-container">
+                    <div class="data-row header">
+                        <div class="data-col-1">Marker</div>
+                        <div class="data-col-2">Value</div>
+                        <div class="data-col-3">AI Interpretation</div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-col-1">SGOT / SGPT</div>
+                        <div class="data-col-2">65.4 HS</div>
+                        <div class="data-col-3">Elevated: Potential fatty liver indicator.</div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-col-1">HbA1c</div>
+                        <div class="data-col-2">8.1%</div>
+                        <div class="data-col-3">Above target: Adherence adjustment recommended.</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 25px; font-style: italic; font-size: 15px; color: var(--accent-emerald);">"Actionable recommendations provided instantly alongside historical trends."</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Food Scanning & Spike Prediction -->
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title"><span>Deep Dive</span>Predictive Food Intelligence</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h3 style="color: var(--accent-blue); margin-bottom: 20px;">Multimodal Food Analysis</h3>
+                <p style="margin-bottom: 25px;">Glymmy analyzes meal composition to predict glucose response <span class="highlight">60 minutes ahead</span> of time.</p>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-check" style="color:var(--accent-emerald); margin-right:12px;"></i> Portion estimation with 10-15% accuracy</li>
+                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-check" style="color:var(--accent-emerald); margin-right:12px;"></i> Personal history-based spike diagnostics</li>
+                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-check" style="color:var(--accent-emerald); margin-right:12px;"></i> Dietary Tags (Halal, Vegan, Keto, Gluten-Free)</li>
+                </ul>
+            </div>
+            <div class="image-wrapper" style="height: 400px; padding: 10px; background: rgba(255,255,255,0.05);">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/4413966807759078565" alt="Glucose Spike Prediction Dashboard" style="object-fit: contain;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Closing: Demo & Vision -->
+<div class="slide-container" id="slide7">
+    <div class="content-area" style="text-align: center; max-width: 900px; margin: 0 auto;">
+        <h2 style="font-size: 64px; margin-bottom: 20px;">Let’s Build for the <span class="highlight">Future</span></h2>
+        <p style="font-size: 28px; color: var(--text-primary); margin-bottom: 40px;">From reactive treatment to <span class="emerald">predictive, personalized care</span>.</p>
+        
+        <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 60px;">
+            <div class="tile" style="padding: 20px; text-align: center;">
+                <i class="fa-solid fa-qrcode" style="font-size: 40px; margin-bottom: 15px;"></i>
+                <p style="font-size: 14px; font-weight: 700; color: white;">QR SHARE</p>
+                <p style="font-size: 12px;">Instant clinical portal sync for seamless data sharing.</p>
+            </div>
+            <div class="tile" style="padding: 20px; text-align: center;">
+                <i class="fa-solid fa-phone-volume" style="color: var(--accent-emerald); font-size: 40px; margin-bottom: 15px;"></i>
+                <p style="font-size: 14px; font-weight: 700; color: white;">AI VOICE CALLS</p>
+                <p style="font-size: 12px;">24/7 critical marker alerts and proactive guidance.</p>
+            </div>
+        </div>
+
+        <div style="border-top: 1px solid var(--border); padding-top: 40px;">
+            <p style="font-size: 16px; margin-bottom: 10px;">TEAM GLYMMY: Abinash Acharya | Prazwal Pandey | Reetwiz Amatya | Kabish Bhattarai</p>
+            <p style="font-weight: 800; color: var(--accent-blue);">team@glymmy.ai  •  www.glymmy.ai</p>
+        </div>
+        <h3 style="margin-top: 40px; font-style: italic; opacity: 0.6;">"Abi shouldn't need five apps to manage his health. With Glymmy, he needs one."</h3>
+    </div>
+</div>
+
+</body>
+</html>

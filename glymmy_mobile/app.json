@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "Glymmy",
+    "slug": "glymmy-mobile",
+    "scheme": "glymmy",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "experiments": {
+      "typedRoutes": true
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.anonymous.glymmy-mobile"
+    }
+  }
+}

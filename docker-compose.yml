@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  chroma:
+    image: chromadb/chroma:latest
+    container_name: glymmy-chroma
+    ports:
+      - "8100:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - ANONYMIZED_TELEMETRY=FALSE
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: glymmy-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: glymmy
+      POSTGRES_PASSWORD: glymmy_dev
+      POSTGRES_DB: glymmy
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: glymmy-pgadmin
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@glymmy.dev
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  adminer:
+    image: adminer:latest
+    container_name: glymmy-adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  chroma_data:
+  postgres_data:
+  pgadmin_data:

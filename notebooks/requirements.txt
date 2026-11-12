@@ -1,0 +1,10 @@
+jupyter
+notebook
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+requests
+Pillow
+loguru
